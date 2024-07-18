@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: malware-classification
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: malware-classification
+  template:
+    metadata:
+      labels:
+        app: malware-classification
+    spec:
+      containers:
+      - name: malware-classification-container
+        image: malware-classification-project  # Replace with your Docker image name
+        ports:
+        - containerPort: 8000
+        env:
+        - name: FLASK_ENV
+          value: development
